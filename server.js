@@ -25,11 +25,17 @@ hbs.registerPartials(`${__dirname}/views/partials`);
 hbsHelpers.forEach(({ name, action }) =>
   hbs.registerHelper(name, () => action())
 );
-
-app.get('/about', (req, res) => {
-  res.render('about.hbs', {
-    title: 'About Page'
+app
+  .get('/', (req, res) => {
+    res.render('home.hbs', {
+      pageTitle: 'Home Page',
+      welcomeMessage: 'Welcome to my website'
+    });
+  })
+  .get('/about', (req, res) => {
+    res.render('about.hbs', {
+      title: 'About Page'
+    });
   });
-});
 
 app.listen(process.env.PORT || 3000);
